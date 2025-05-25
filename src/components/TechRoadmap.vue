@@ -24,7 +24,7 @@
               <span class="cursor">|</span>
           </div>
             <p class="bio">{{ personalInfo.subtitle }}</p>
-            
+        
             <div class="contact-info">
               <div class="contact-item" v-for="contact in contactInfo" :key="contact.label">
                 <span class="icon">{{ contact.icon }}</span>
@@ -300,7 +300,7 @@ onMounted(() => {
     @media (max-width: 768px) {
       background: 
         radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
-    }
+  }
   }
 
   
@@ -316,8 +316,8 @@ onMounted(() => {
         linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
     background-size: 50px 50px;
-    }
-    
+}
+
     @media (max-width: 768px) {
       display: none; // 移动端隐藏网格以提升性能
     }
@@ -334,7 +334,7 @@ onMounted(() => {
   position: relative;
   z-index: 1;
 }
-
+  
 .hero-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -354,9 +354,9 @@ onMounted(() => {
   @media (max-width: 968px) {
     grid-template-columns: 1fr;
     gap: 2rem;
+    }
   }
-}
-
+  
 .profile-content {
   flex: 1;
   
@@ -399,7 +399,7 @@ onMounted(() => {
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
-}
+  }
 
 .contact-info {
   display: flex;
@@ -409,17 +409,17 @@ onMounted(() => {
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 0.75rem;
-  }
-  
+    }
+    
   .contact-item {
       display: flex;
       align-items: center;
     gap: 0.5rem;
-    
+      
     .icon {
       font-size: 1.1rem;
-    }
-    
+      }
+      
     .text {
       color: #cbd5e1;
       font-size: 0.95rem;
@@ -442,8 +442,8 @@ onMounted(() => {
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-    }
-    
+  }
+  
     .skills-subtitle {
       font-size: 0.9rem;
       color: #94a3b8;
@@ -505,15 +505,15 @@ onMounted(() => {
         @for $i from 1 through 50 {
           &:nth-child(#{$i}) {
             animation-delay: #{$i * 0.08}s;
-          }
-        }
-      }
-      
+    }
+  }
+}
+
       @media (max-width: 768px) {
         opacity: 1;
         transform: translateY(0);
-      }
-      
+}
+
       // 大小变化 - 统一高度和字体，只改变宽度
       &.small {
         padding: 0.6rem 0.8rem;
@@ -574,8 +574,8 @@ onMounted(() => {
             border-color: rgba(139, 92, 246, 0.5);
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
-          }
-          
+      }
+      
           &.large:hover {
             transform: translateY(-5px) scale(1.08);
             box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
@@ -614,13 +614,13 @@ onMounted(() => {
             border-color: rgba(245, 158, 11, 0.5);
             transform: translateY(-3px) scale(1.05);
             box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
-          }
-          
+      }
+      
           &.large:hover {
             transform: translateY(-5px) scale(1.08);
             box-shadow: 0 12px 35px rgba(245, 158, 11, 0.4);
-          }
         }
+      }
       }
     }
   }
@@ -670,8 +670,8 @@ onMounted(() => {
   @media (max-width: 480px) {
     grid-template-columns: 1fr;
   }
-}
-
+  }
+  
 .nav-card {
     display: flex;
   align-items: center;
@@ -688,8 +688,8 @@ onMounted(() => {
     border-color: rgba(59, 130, 246, 0.2);
     transform: translateY(-2px);
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  }
-  
+    }
+    
   &.active {
     background: rgba(59, 130, 246, 0.1);
     border-color: rgba(59, 130, 246, 0.3);
@@ -701,7 +701,7 @@ onMounted(() => {
     
     .nav-icon {
       background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
-    }
+      }
   }
 }
 
@@ -717,8 +717,8 @@ onMounted(() => {
         display: flex;
         align-items: center;
   justify-content: center;
-}
-
+        }
+        
 .nav-info {
   flex: 1;
   min-width: 0;
@@ -742,7 +742,7 @@ onMounted(() => {
     border-radius: 4px;
     display: inline-block;
     font-weight: 500;
-  }
+    }
 }
 
 // 内容展示区域
@@ -751,7 +751,7 @@ onMounted(() => {
   background: linear-gradient(135deg, rgba(15, 23, 42, 0.4) 0%, rgba(30, 41, 59, 0.4) 100%);
   backdrop-filter: blur(20px);
   border-top: 1px solid rgba(59, 130, 246, 0.2);
-}
+  }
 
 .content-container {
   max-width: 1200px;
@@ -783,15 +783,15 @@ onMounted(() => {
       align-items: center;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
-  
+      
   .stage-icon {
     font-size: 2rem;
     padding: 0.75rem;
     background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
     border-radius: 12px;
     box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
-  }
-  
+      }
+      
   .stage-info {
     flex: 1;
     
@@ -829,8 +829,8 @@ onMounted(() => {
   &.expanded {
     max-height: 2000px;
     opacity: 1;
-  }
-  
+    }
+    
   .description {
     color: #94a3b8;
     line-height: 1.6;
@@ -935,8 +935,8 @@ onMounted(() => {
         margin: 0 0 0.5rem 0;
         color: #f1f5f9;
         line-height: 1.3;
-      }
-      
+    }
+    
       .module-period {
         font-size: 0.85rem;
         color: #60a5fa;
@@ -956,8 +956,8 @@ onMounted(() => {
       
       &:last-child {
         margin-bottom: 0;
-      }
-      
+    }
+    
       .section-header {
         margin-bottom: 0.75rem;
         
@@ -972,8 +972,8 @@ onMounted(() => {
           background: rgba(59, 130, 246, 0.05);
           border-radius: 0 8px 8px 0;
         }
-      }
-      
+    }
+    
       .section-content {
         padding-left: 0.75rem;
         
@@ -981,24 +981,24 @@ onMounted(() => {
       display: flex;
           align-items: flex-start;
           margin-bottom: 0.75rem;
-          
+      
           .detail-bullet {
             color: #3b82f6;
             font-weight: bold;
             margin-right: 0.75rem;
             margin-top: 0.1rem;
             flex-shrink: 0;
-          }
-          
+      }
+      
           .detail-text {
             color: #cbd5e1;
             font-size: 0.9rem;
             line-height: 1.6;
             flex: 1;
           }
-        }
       }
-      
+    }
+    
       .simple-content {
         display: flex;
         align-items: flex-start;
@@ -1033,7 +1033,7 @@ onMounted(() => {
     color: #94a3b8;
     margin-bottom: 1rem;
     display: block;
-  }
+      }
   
   .tech-tags {
     display: flex;
@@ -1094,8 +1094,8 @@ onMounted(() => {
         min-height: 32px;
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
-      }
     }
+  }
   }
 }
 
@@ -1103,15 +1103,15 @@ onMounted(() => {
   .skills-showcase .skills-grid {
     gap: 0.4rem;
     padding: 1rem;
-    
+      
           .skill-tag {
         font-size: 0.75rem;
         
         &.small {
           padding: 0.4rem 0.6rem;
           min-height: 28px;
-        }
-        
+      }
+      
         &.medium {
           padding: 0.4rem 0.8rem;
           min-height: 28px;
@@ -1122,9 +1122,9 @@ onMounted(() => {
           min-height: 28px;
         }
       }
+    }
   }
-}
-
+  
 // 加载指示器
 .loading-overlay {
   position: fixed;
@@ -1150,13 +1150,13 @@ onMounted(() => {
       border-radius: 50%;
       animation: spin 1s linear infinite;
       margin: 0 auto 1rem;
-    }
+  }
     
     p {
       font-size: 1rem;
       color: #94a3b8;
       margin: 0;
-    }
+  }
   }
 }
 
