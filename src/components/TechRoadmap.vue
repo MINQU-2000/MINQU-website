@@ -5,14 +5,14 @@
       <div class="loading-spinner">
         <div class="spinner"></div>
         <p>正在加载瞿敏的个人简历...</p>
-      </div>
     </div>
+        </div>
     <!-- 深色背景 -->
     <div class="background-layer">
       <div class="gradient-mesh"></div>
       <div class="grid-pattern"></div>
-    </div>
-
+        </div>
+        
     <!-- 个人信息区域 -->
     <div class="hero-section">
       <div class="hero-container">
@@ -22,23 +22,23 @@
             <div class="role-display">
               <span class="role-text">{{ currentRole }}</span>
               <span class="cursor">|</span>
-            </div>
+          </div>
             <p class="bio">{{ personalInfo.subtitle }}</p>
             
             <div class="contact-info">
               <div class="contact-item" v-for="contact in contactInfo" :key="contact.label">
                 <span class="icon">{{ contact.icon }}</span>
                 <span class="text">{{ contact.value }}</span>
-              </div>
-            </div>
-          </div>
-          
+        </div>
+      </div>
+    </div>
+
                     <!-- 技能展示区域 -->
           <div class="skills-showcase">
             <div class="skills-header">
               <h3 class="skills-title">专业技能</h3>
               <div class="skills-subtitle">Professional Skills & Expertise</div>
-            </div>
+        </div>
             <div class="skills-grid">
               <div 
                 v-for="(skill, index) in allSkills" 
@@ -47,18 +47,18 @@
                 :class="getSkillClass(index)"
               >
                 {{ skill }}
-              </div>
-            </div>
           </div>
-        </div>
-        
+                </div>
+                </div>
+              </div>
+              
         <!-- 横向导航 -->
         <div class="navigation-section">
           <div class="nav-header">
             <h2>专业经历</h2>
             <div class="nav-line"></div>
-          </div>
-          
+            </div>
+            
           <div class="nav-grid">
             <div 
               v-for="(stage, index) in stages" 
@@ -70,13 +70,13 @@
               <div class="nav-info">
                 <div class="nav-title">{{ stage.title }}</div>
                 <div class="nav-duration">{{ stage.duration }}</div>
-              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
+        </div>
+          </div>
+          
     <!-- 内容展示区域 -->
     <div class="content-section">
       <div class="content-container">
@@ -92,9 +92,9 @@
               <h3>{{ stage.title }}</h3>
               <p class="stage-subtitle">{{ stage.subtitle }}</p>
               <span class="stage-duration">{{ stage.duration }}</span>
-            </div>
-          </div>
-          
+                </div>
+              </div>
+              
           <!-- 展开的详细内容 -->
           <div class="stage-details expanded">
             <p class="description">{{ stage.description }}</p>
@@ -111,53 +111,53 @@
                   <div class="module-info">
                     <h4 class="module-title">{{ module.title }}</h4>
                     <span v-if="module.period" class="module-period">{{ module.period }}</span>
-                  </div>
-                </div>
-                
+              </div>
+            </div>
+            
                 <div class="module-content">
                   <div v-for="item in module.items" :key="item.name || item" class="content-section">
                     <template v-if="typeof item === 'object' && item.name">
                       <div class="section-header">
                         <h5 class="section-title">{{ item.name }}</h5>
-                      </div>
+            </div>
                       <div class="section-content">
                         <div v-for="detail in item.details" :key="detail" class="detail-item">
                           <span class="detail-bullet">•</span>
                           <span class="detail-text">{{ detail }}</span>
-                        </div>
-                      </div>
+          </div>
+        </div>
                     </template>
                     <template v-else>
                       <div class="simple-content">
                         <span class="simple-bullet">•</span>
                         <span class="simple-text">{{ item }}</span>
-                      </div>
+      </div>
                     </template>
-                  </div>
+        </div>
+          </div>
                 </div>
               </div>
-            </div>
-            
+
             <div class="tech-stack">
               <span class="stack-label">核心技能</span>
               <div class="tech-tags">
                 <span v-for="tech in stage.techStack" :key="tech" class="tech-tag">
                   {{ tech }}
                 </span>
+                </div>
               </div>
-            </div>
-            
 
+
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
 
 
     <!-- 页脚区域 -->
     <FooterSection />
-  </div>
+              </div>
 </template>
 
 <script setup>
@@ -312,10 +312,10 @@ onMounted(() => {
     height: 100%;
     
     @media (min-width: 769px) {
-      background-image: 
+    background-image: 
         linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 50px 50px;
+    background-size: 50px 50px;
     }
     
     @media (max-width: 768px) {
@@ -412,8 +412,8 @@ onMounted(() => {
   }
   
   .contact-item {
-    display: flex;
-    align-items: center;
+      display: flex;
+      align-items: center;
     gap: 0.5rem;
     
     .icon {
@@ -490,7 +490,7 @@ onMounted(() => {
       font-weight: 500;
       text-align: center;
       border: 1px solid;
-      transition: all 0.3s ease;
+    transition: all 0.3s ease;
       backdrop-filter: blur(5px);
       z-index: 1;
       cursor: pointer;
@@ -518,10 +518,10 @@ onMounted(() => {
       &.small {
         padding: 0.6rem 0.8rem;
         font-size: 0.85rem;
-        border-radius: 20px;
+  border-radius: 20px;
         min-height: 36px;
-        display: flex;
-        align-items: center;
+    display: flex;
+    align-items: center;
       }
       
       &.medium {
@@ -529,8 +529,8 @@ onMounted(() => {
         font-size: 0.85rem;
         border-radius: 25px;
         min-height: 36px;
-        display: flex;
-        align-items: center;
+      display: flex;
+      align-items: center;
       }
       
       &.large {
@@ -549,7 +549,7 @@ onMounted(() => {
         color: #60a5fa;
         
         @media (min-width: 769px) {
-          &:hover {
+      &:hover {
             background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
             border-color: rgba(59, 130, 246, 0.5);
             transform: translateY(-3px) scale(1.05);
@@ -569,7 +569,7 @@ onMounted(() => {
         color: #a78bfa;
         
         @media (min-width: 769px) {
-          &:hover {
+      &:hover {
             background: linear-gradient(135deg, rgba(139, 92, 246, 0.25) 0%, rgba(6, 182, 212, 0.25) 100%);
             border-color: rgba(139, 92, 246, 0.5);
             transform: translateY(-3px) scale(1.05);
@@ -609,7 +609,7 @@ onMounted(() => {
         color: #f59e0b;
         
         @media (min-width: 769px) {
-          &:hover {
+      &:hover {
             background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(239, 68, 68, 0.25) 100%);
             border-color: rgba(245, 158, 11, 0.5);
             transform: translateY(-3px) scale(1.05);
@@ -628,7 +628,7 @@ onMounted(() => {
 
 @keyframes fadeInUp {
   0% {
-    opacity: 0;
+  opacity: 0;
     transform: translateY(20px);
   }
   100% {
@@ -644,7 +644,7 @@ onMounted(() => {
     
     h2 {
       font-size: 1.5rem;
-      font-weight: 600;
+        font-weight: 600;
       margin: 0 0 1rem 0;
       color: #f1f5f9;
     }
@@ -673,17 +673,17 @@ onMounted(() => {
 }
 
 .nav-card {
-  display: flex;
+    display: flex;
   align-items: center;
   gap: 0.75rem;
   padding: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+    transition: all 0.3s ease;
   border-radius: 12px;
   background: rgba(30, 41, 59, 0.6);
   border: 1px solid rgba(59, 130, 246, 0.1);
-  
-  &:hover {
+    
+    &:hover {
     background: rgba(30, 41, 59, 0.8);
     border-color: rgba(59, 130, 246, 0.2);
     transform: translateY(-2px);
@@ -714,8 +714,8 @@ onMounted(() => {
   transition: all 0.3s ease;
   min-width: 40px;
   height: 40px;
-  display: flex;
-  align-items: center;
+        display: flex;
+        align-items: center;
   justify-content: center;
 }
 
@@ -724,7 +724,7 @@ onMounted(() => {
   min-width: 0;
   
   .nav-title {
-    font-size: 0.9rem;
+          font-size: 0.9rem;
     font-weight: 500;
     margin: 0 0 0.25rem 0;
     color: #e2e8f0;
@@ -779,8 +779,8 @@ onMounted(() => {
 }
 
 .stage-header {
-  display: flex;
-  align-items: center;
+      display: flex;
+      align-items: center;
   gap: 1.5rem;
   margin-bottom: 1.5rem;
   
@@ -813,7 +813,7 @@ onMounted(() => {
       color: #3b82f6;
       background: rgba(59, 130, 246, 0.1);
       padding: 0.2rem 0.6rem;
-      border-radius: 8px;
+        border-radius: 8px;
       display: inline-block;
     }
   }
@@ -858,14 +858,14 @@ onMounted(() => {
   border-radius: 16px;
   padding: 1.5rem;
   transition: all 0.3s ease;
-  position: relative;
+    position: relative;
   box-shadow: 
     0 2px 8px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(148, 163, 184, 0.05);
   
   &::after {
     content: '';
-    position: absolute;
+      position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -879,8 +879,8 @@ onMounted(() => {
     -webkit-mask-composite: xor;
     pointer-events: none;
   }
-  
-  &:hover {
+    
+    &:hover {
     border-color: rgba(59, 130, 246, 0.2);
     box-shadow: 
       0 4px 20px rgba(0, 0, 0, 0.2),
@@ -962,7 +962,7 @@ onMounted(() => {
         margin-bottom: 0.75rem;
         
         .section-title {
-          font-size: 1rem;
+      font-size: 1rem;
           font-weight: 600;
           margin: 0;
           color: #e2e8f0;
@@ -978,7 +978,7 @@ onMounted(() => {
         padding-left: 0.75rem;
         
         .detail-item {
-          display: flex;
+      display: flex;
           align-items: flex-start;
           margin-bottom: 0.75rem;
           
@@ -1130,12 +1130,12 @@ onMounted(() => {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+      width: 100%;
   height: 100%;
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
   display: flex;
   align-items: center;
-  justify-content: center;
+      justify-content: center;
   z-index: 9999;
   
   .loading-spinner {
@@ -1163,5 +1163,5 @@ onMounted(() => {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
+ }
 </style>
