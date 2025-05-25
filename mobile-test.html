@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>移动端测试页面</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .test-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .test-header {
+            margin-bottom: 30px;
+        }
+        
+        .test-header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #3b82f6;
+        }
+        
+        .test-item {
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+        
+        .test-item h3 {
+            color: #60a5fa;
+            margin-bottom: 10px;
+        }
+        
+        .test-result {
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .success {
+            background: rgba(16, 185, 129, 0.2);
+            color: #10b981;
+        }
+        
+        .error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        
+        .info {
+            background: rgba(59, 130, 246, 0.2);
+            color: #3b82f6;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(59, 130, 246, 0.3);
+            border-top: 2px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .main-site-link {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .main-site-link:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="test-header">
+            <h1>📱 移动端兼容性测试</h1>
+            <p>检测您的设备是否能正常访问瞿敏的个人简历网站</p>
+        </div>
+        
+        <div class="test-item">
+            <h3>🌐 网络连接测试</h3>
+            <div id="network-test">
+                <div class="loading"></div> 正在测试网络连接...
+            </div>
+        </div>
+        
+        <div class="test-item">
+            <h3>📱 设备信息</h3>
+            <div id="device-info" class="test-result info">
+                <div class="loading"></div> 正在获取设备信息...
+            </div>
+        </div>
+        
+        <div class="test-item">
+            <h3>🎨 CSS支持测试</h3>
+            <div id="css-test" class="test-result info">
+                <div class="loading"></div> 正在测试CSS兼容性...
+            </div>
+        </div>
+        
+        <div class="test-item">
+            <h3>⚡ JavaScript测试</h3>
+            <div id="js-test" class="test-result info">
+                <div class="loading"></div> 正在测试JavaScript支持...
+            </div>
+        </div>
+        
+        <div class="test-item">
+            <h3>🔗 主站连接测试</h3>
+            <div id="main-site-test" class="test-result info">
+                <div class="loading"></div> 正在测试主站连接...
+            </div>
+        </div>
+        
+        <a href="https://minqu-website-git-main-minqus-projects.vercel.app/" class="main-site-link">
+            🚀 访问瞿敏的个人简历网站
+        </a>
+    </div>
+
+    <script>
+        // 网络连接测试
+        function testNetwork() {
+            const startTime = Date.now();
+            fetch('https://httpbin.org/get')
+                .then(response => {
+                    const endTime = Date.now();
+                    const latency = endTime - startTime;
+                    document.getElementById('network-test').innerHTML = 
+                        `<div class="test-result success">✅ 网络连接正常 (延迟: ${latency}ms)</div>`;
+                })
+                .catch(error => {
+                    document.getElementById('network-test').innerHTML = 
+                        `<div class="test-result error">❌ 网络连接异常: ${error.message}</div>`;
+                });
+        }
+        
+        // 设备信息
+        function getDeviceInfo() {
+            const info = {
+                userAgent: navigator.userAgent,
+                platform: navigator.platform,
+                language: navigator.language,
+                cookieEnabled: navigator.cookieEnabled,
+                onLine: navigator.onLine,
+                screenWidth: screen.width,
+                screenHeight: screen.height,
+                viewportWidth: window.innerWidth,
+                viewportHeight: window.innerHeight
+            };
+            
+            document.getElementById('device-info').innerHTML = `
+                <div class="test-result success">
+                    📱 设备: ${info.platform}<br>
+                    🌐 浏览器: ${info.userAgent.split(' ')[0]}<br>
+                    📏 屏幕: ${info.screenWidth}x${info.screenHeight}<br>
+                    👁️ 视口: ${info.viewportWidth}x${info.viewportHeight}<br>
+                    🌍 语言: ${info.language}<br>
+                    📶 在线: ${info.onLine ? '是' : '否'}
+                </div>
+            `;
+        }
+        
+        // CSS支持测试
+        function testCSS() {
+            const features = {
+                flexbox: CSS.supports('display', 'flex'),
+                grid: CSS.supports('display', 'grid'),
+                gradients: CSS.supports('background', 'linear-gradient(red, blue)'),
+                transforms: CSS.supports('transform', 'translateX(10px)'),
+                animations: CSS.supports('animation', 'test 1s'),
+                backdropFilter: CSS.supports('backdrop-filter', 'blur(10px)')
+            };
+            
+            const results = Object.entries(features).map(([feature, supported]) => 
+                `${supported ? '✅' : '❌'} ${feature}: ${supported ? '支持' : '不支持'}`
+            ).join('<br>');
+            
+            document.getElementById('css-test').innerHTML = 
+                `<div class="test-result ${Object.values(features).every(v => v) ? 'success' : 'error'}">${results}</div>`;
+        }
+        
+        // JavaScript测试
+        function testJS() {
+            const features = {
+                ES6: typeof Symbol !== 'undefined',
+                Promise: typeof Promise !== 'undefined',
+                Fetch: typeof fetch !== 'undefined',
+                LocalStorage: typeof localStorage !== 'undefined',
+                SessionStorage: typeof sessionStorage !== 'undefined'
+            };
+            
+            const results = Object.entries(features).map(([feature, supported]) => 
+                `${supported ? '✅' : '❌'} ${feature}: ${supported ? '支持' : '不支持'}`
+            ).join('<br>');
+            
+            document.getElementById('js-test').innerHTML = 
+                `<div class="test-result ${Object.values(features).every(v => v) ? 'success' : 'error'}">${results}</div>`;
+        }
+        
+        // 主站连接测试
+        function testMainSite() {
+            const mainSiteUrl = 'https://minqu-website-git-main-minqus-projects.vercel.app/';
+            const startTime = Date.now();
+            
+            fetch(mainSiteUrl, { mode: 'no-cors' })
+                .then(() => {
+                    const endTime = Date.now();
+                    const latency = endTime - startTime;
+                    document.getElementById('main-site-test').innerHTML = 
+                        `<div class="test-result success">✅ 主站连接正常 (延迟: ${latency}ms)</div>`;
+                })
+                .catch(error => {
+                    document.getElementById('main-site-test').innerHTML = 
+                        `<div class="test-result error">❌ 主站连接异常: ${error.message}</div>`;
+                });
+        }
+        
+        // 运行所有测试
+        setTimeout(() => {
+            testNetwork();
+            getDeviceInfo();
+            testCSS();
+            testJS();
+            testMainSite();
+        }, 1000);
+    </script>
+</body>
+</html> 

@@ -1,5 +1,12 @@
 <template>
   <div class="personal-portfolio">
+    <!-- 加载指示器 -->
+    <div v-if="isLoading" class="loading-overlay">
+      <div class="loading-spinner">
+        <div class="spinner"></div>
+        <p>正在加载瞿敏的个人简历...</p>
+      </div>
+    </div>
     <!-- 深色背景 -->
     <div class="background-layer">
       <div class="gradient-mesh"></div>
@@ -162,6 +169,7 @@ import FooterSection from './FooterSection.vue'
 // 响应式数据
 const activeStage = ref(0)
 const currentRole = ref('')
+const isLoading = ref(true)
 
 // 计算属性
 const personalInfo = computed(() => roadmapData.personalInfo)
@@ -243,6 +251,11 @@ const typeWriter = () => {
 // 生命周期
 onMounted(() => {
   typeWriter()
+  
+  // 模拟加载完成
+  setTimeout(() => {
+    isLoading.value = false
+  }, 1000)
 })
 </script>
 
@@ -260,7 +273,7 @@ onMounted(() => {
   position: relative;
 }
 
-// 深色背景层
+// 深色背景层 - 移动端优化
 .background-layer {
   position: fixed;
   top: 0;
@@ -275,11 +288,19 @@ onMounted(() => {
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-      radial-gradient(circle at 30% 40%, rgba(59, 130, 246, 0.12) 0%, transparent 60%),
-      radial-gradient(circle at 70% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 60%),
-      radial-gradient(circle at 20% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
-      radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.06) 0%, transparent 60%);
+    
+    @media (min-width: 769px) {
+      background: 
+        radial-gradient(circle at 30% 40%, rgba(59, 130, 246, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 70% 20%, rgba(139, 92, 246, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 20% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.06) 0%, transparent 60%);
+    }
+    
+    @media (max-width: 768px) {
+      background: 
+        radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+    }
   }
 
   
@@ -289,10 +310,17 @@ onMounted(() => {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: 
-      linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-    background-size: 50px 50px;
+    
+    @media (min-width: 769px) {
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+    
+    @media (max-width: 768px) {
+      display: none; // 移动端隐藏网格以提升性能
+    }
   }
 }
 
@@ -468,15 +496,22 @@ onMounted(() => {
       cursor: pointer;
       flex-shrink: 0;
       
-      // 动画效果
-      animation: fadeInUp 0.6s ease-out forwards;
-      opacity: 0;
-      transform: translateY(20px);
-      
-      @for $i from 1 through 50 {
-        &:nth-child(#{$i}) {
-          animation-delay: #{$i * 0.08}s;
+      // 动画效果 - 移动端优化
+      @media (min-width: 769px) {
+        animation: fadeInUp 0.6s ease-out forwards;
+        opacity: 0;
+        transform: translateY(20px);
+        
+        @for $i from 1 through 50 {
+          &:nth-child(#{$i}) {
+            animation-delay: #{$i * 0.08}s;
+          }
         }
+      }
+      
+      @media (max-width: 768px) {
+        opacity: 1;
+        transform: translateY(0);
       }
       
       // 大小变化 - 统一高度和字体，只改变宽度
@@ -513,16 +548,18 @@ onMounted(() => {
         border-color: rgba(59, 130, 246, 0.3);
         color: #60a5fa;
         
-        &:hover {
-          background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
-          border-color: rgba(59, 130, 246, 0.5);
-          transform: translateY(-3px) scale(1.05);
-          box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
-        }
-        
-        &.large:hover {
-          transform: translateY(-5px) scale(1.08);
-          box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
+        @media (min-width: 769px) {
+          &:hover {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(139, 92, 246, 0.25) 100%);
+            border-color: rgba(59, 130, 246, 0.5);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+          }
+          
+          &.large:hover {
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.4);
+          }
         }
       }
       
@@ -531,16 +568,18 @@ onMounted(() => {
         border-color: rgba(139, 92, 246, 0.3);
         color: #a78bfa;
         
-        &:hover {
-          background: linear-gradient(135deg, rgba(139, 92, 246, 0.25) 0%, rgba(6, 182, 212, 0.25) 100%);
-          border-color: rgba(139, 92, 246, 0.5);
-          transform: translateY(-3px) scale(1.05);
-          box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
-        }
-        
-        &.large:hover {
-          transform: translateY(-5px) scale(1.08);
-          box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
+        @media (min-width: 769px) {
+          &:hover {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.25) 0%, rgba(6, 182, 212, 0.25) 100%);
+            border-color: rgba(139, 92, 246, 0.5);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+          }
+          
+          &.large:hover {
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4);
+          }
         }
       }
       
@@ -549,16 +588,18 @@ onMounted(() => {
         border-color: rgba(6, 182, 212, 0.3);
         color: #06b6d4;
         
-        &:hover {
-          background: linear-gradient(135deg, rgba(6, 182, 212, 0.25) 0%, rgba(16, 185, 129, 0.25) 100%);
-          border-color: rgba(6, 182, 212, 0.5);
-          transform: translateY(-3px) scale(1.05);
-          box-shadow: 0 8px 25px rgba(6, 182, 212, 0.3);
-        }
-        
-        &.large:hover {
-          transform: translateY(-5px) scale(1.08);
-          box-shadow: 0 12px 35px rgba(6, 182, 212, 0.4);
+        @media (min-width: 769px) {
+          &:hover {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.25) 0%, rgba(16, 185, 129, 0.25) 100%);
+            border-color: rgba(6, 182, 212, 0.5);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(6, 182, 212, 0.3);
+          }
+          
+          &.large:hover {
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 12px 35px rgba(6, 182, 212, 0.4);
+          }
         }
       }
       
@@ -567,16 +608,18 @@ onMounted(() => {
         border-color: rgba(245, 158, 11, 0.3);
         color: #f59e0b;
         
-        &:hover {
-          background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(239, 68, 68, 0.25) 100%);
-          border-color: rgba(245, 158, 11, 0.5);
-          transform: translateY(-3px) scale(1.05);
-          box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
-        }
-        
-        &.large:hover {
-          transform: translateY(-5px) scale(1.08);
-          box-shadow: 0 12px 35px rgba(245, 158, 11, 0.4);
+        @media (min-width: 769px) {
+          &:hover {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.25) 0%, rgba(239, 68, 68, 0.25) 100%);
+            border-color: rgba(245, 158, 11, 0.5);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+          }
+          
+          &.large:hover {
+            transform: translateY(-5px) scale(1.08);
+            box-shadow: 0 12px 35px rgba(245, 158, 11, 0.4);
+          }
         }
       }
     }
@@ -1080,5 +1123,45 @@ onMounted(() => {
         }
       }
   }
+}
+
+// 加载指示器
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  
+  .loading-spinner {
+    text-align: center;
+    color: #f1f5f9;
+    
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid rgba(59, 130, 246, 0.3);
+      border-top: 3px solid #3b82f6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+    
+    p {
+      font-size: 1rem;
+      color: #94a3b8;
+      margin: 0;
+    }
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 </style>
