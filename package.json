@@ -1,0 +1,32 @@
+{
+  "name": "visual-perception-tech-roadmap",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.1",
+    "d3": "^7.8.5",
+    "element-plus": "^2.4.4",
+    "esbuild": "^0.25.4",
+    "gsap": "^3.12.2",
+    "local-pkg": "^1.1.1",
+    "lucide-vue-next": "^0.294.0",
+    "pinia": "^2.1.7",
+    "unplugin": "^2.3.4",
+    "vue": "^3.4.0",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@stagewise/toolbar-vue": "^0.1.2",
+    "@vitejs/plugin-vue": "^4.5.2",
+    "sass": "^1.69.5",
+    "unplugin-auto-import": "^0.17.2",
+    "unplugin-vue-components": "^0.25.2",
+    "vite": "^5.0.8"
+  }
+}
