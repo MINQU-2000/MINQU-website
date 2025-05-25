@@ -22,22 +22,12 @@ export default defineConfig({
     outDir: 'dist',
     assetsDir: 'assets',
     target: 'es2015',
-    minify: 'terser',
+    minify: 'esbuild',
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['vue'],
-          utils: ['src/data/roadmapData.js']
-        },
         chunkFileNames: 'js/[name]-[hash].js',
         entryFileNames: 'js/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]'
-      }
-    },
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
       }
     }
   },
