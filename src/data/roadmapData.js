@@ -129,7 +129,7 @@ export const roadmapData = {
           id: 'cloudwalk',
           title: '云从科技集团股份有限公司',
           position: 'UI设计实习生',
-          period: '2024.04至今',
+          period: '2025.04至今',
           items: [
             {
               name: '知识中台项目UI界面改版',
